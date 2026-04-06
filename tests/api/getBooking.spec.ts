@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test"
 
-test("Get Details of Booking Id 1", async ({ request }) => {
-    const response = await request.get("/booking/1"); 
+test("Get Details of Booking Id 3", async ({ request }) => {
+    const response = await request.get("/booking/3"); 
     expect(response.status()).toBe(200);
     const responseBody = await response.json();
     console.log("Booking Details: ", responseBody);
