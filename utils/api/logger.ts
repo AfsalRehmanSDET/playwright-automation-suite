@@ -14,7 +14,7 @@ function log(message: string, level: LogLevel) {
   console.log(`${color}[${timestamp}][${level.toUpperCase()}] ${message}${COLORS.reset}`);
 }
 
-export const Logger = {
+export const logger = {
    info: (message: string) => log(message, 'info'),
    warn: (message: string) => log(message, 'warn'),
    error: (message: string) => log(message, 'error'),

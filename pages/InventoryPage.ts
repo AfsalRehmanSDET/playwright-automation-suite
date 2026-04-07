@@ -1,21 +1,21 @@
 import {Page,Locator} from '@playwright/test';
+import { BasePage } from './BasePage';
 
-export class InventoryPage {
-    private page: Page
+export class InventoryPage extends BasePage {
     addToCartBtn: Locator;
     cartIcon: Locator;
 
     constructor(page: Page) {
-        this.page = page;
+        super(page);
         this.addToCartBtn = page.locator('.btn_inventory');
         this.cartIcon = page.locator('.shopping_cart_link');
     }
 
     async addItemToCart() {
-        await this.addToCartBtn.first().click();
+        await this.clickElement(this.addToCartBtn.first());
     }
 
     async goToCart() {
-        await this.cartIcon.click();
+        await this.clickElement(this.cartIcon);
     }
 }
