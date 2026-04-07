@@ -1,14 +1,14 @@
-import { expect, test } from "@playwright/test"
+import { expect, test } from "../../fixtures"
+import { TAGS } from "../../constants";
 
-test("Get Details of Booking Id 3", async ({ request }) => {
-    const response = await request.get("/booking/3");
-    expect(response.status()).toBe(200);
-    const responseBody = await response.json();
-    console.log("Booking Details: ", responseBody);
-    await expect(responseBody).toHaveProperty("firstname");
-    await expect(responseBody).toHaveProperty("lastname");
-    await expect(responseBody).toHaveProperty("totalprice");
-    await expect(responseBody).toHaveProperty("depositpaid");
-    await expect(responseBody).toHaveProperty("bookingdates");
-    await expect(responseBody.firstname).not.toBe("");
+
+test(`Get Booking Details ${TAGS.API}`, async ({ apiHelper }) => {
+    const bookingDetails = await apiHelper.getBookings(1);
+    console.log("Booking Details: ", bookingDetails);
+    await expect(bookingDetails).toHaveProperty("firstname");
+    await expect(bookingDetails).toHaveProperty("lastname");
+    await expect(bookingDetails).toHaveProperty("totalprice");
+    await expect(bookingDetails).toHaveProperty("depositpaid");
+    await expect(bookingDetails).toHaveProperty("bookingdates");
+    await expect(bookingDetails.firstname).not.toBe("");
 });

@@ -1,10 +1,12 @@
 import {test as base} from '@playwright/test';
 import { LoginPage } from '../pages/LoginPage';
 import { UserCredentials} from '../types';
+import { APIHelper } from '../utils/api/apiHelper';
 
 type CustomFixtures = {
     loginPage: LoginPage;
     loggedInPage: LoginPage;
+    apiHelper: APIHelper;
 };
 
 export const test = base.extend<CustomFixtures>({
@@ -19,7 +21,14 @@ export const test = base.extend<CustomFixtures>({
         await loginPage.navigate();
         await loginPage.login(credentials);
         await use(loginPage);
+    },
+    apiHelper: async ({ request }, use) => {
+        const api = new APIHelper(request);
+        await api.getAuthToken(request);
+        await use(api);
     }
 });
+
+
 
 export { expect } from '@playwright/test';
