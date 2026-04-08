@@ -19,7 +19,7 @@ This framework is designed to validate web applications through:
 ## 🛠️ Tech Stack
 
 - **Framework:** Playwright
-- **Language:** JavaScript / TypeScript
+- **Language:**  TypeScript
 - **Test Runner:** Playwright Test
 - **API Testing:** Playwright Request Context
 - **Assertions:** Built-in Playwright expect
