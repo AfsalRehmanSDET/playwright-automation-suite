@@ -1,5 +1,7 @@
 // @ts-check
 import { defineConfig, devices } from '@playwright/test';
+import { API_ENV_CONFIG } from './constants';
+import { UI_ENV_CONFIG } from './constants';
 
 /**
  * Read environment variables from file.
@@ -34,7 +36,7 @@ export default defineConfig({
       name: 'UI Tests',
       use: {
         /* Base URL to use in actions like `await page.goto('')`. */
-        baseURL: 'https://www.saucedemo.com',
+        baseURL: UI_ENV_CONFIG.dev.baseURL,
         headless: true,
         screenshot: 'only-on-failure',
         video: 'retain-on-failure',
@@ -47,7 +49,7 @@ export default defineConfig({
       testDir : './tests/api',
       use: {
         /* Base URL to use in actions like `await page.goto('')`. */
-        baseURL: 'https://restful-booker.herokuapp.com',
+        baseURL: API_ENV_CONFIG.production.baseURL
       },
      },
   ],
